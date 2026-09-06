@@ -325,8 +325,8 @@ this head:
 
 ## Phase 3: surface discovery
 
-Turn changed files into a list of routes to walk. Cap it, and **say what you capped**: a silent
-truncation reads as full coverage.
+Turn changed files into a list of routes to walk. Walk every route the diff reaches. **Never**
+truncate the list: a silent truncation reads as full coverage.
 
 ```bash
 gh pr diff "$PR" --repo "$REPO" --name-only > "$SCRATCH/files-$NAME-$PR.txt"
@@ -343,15 +343,11 @@ grep -E '^apps/agents-portal/src/(pages|components)/' "$SCRATCH/files-$NAME-$PR.
 - **Dynamic segments (`[id].tsx`): never construct the URL.** Navigate to the parent list page and
   click the first row. A hand-built `/agents/123` 404s against per-run seeded emulator data, and a
   404 screenshot looks exactly like a real bug (invariant 2 violation waiting to happen).
-- **Cap: 8 surfaces.** More than that -> walk the 8 with the largest diff and list the dropped
-  routes in the report *and* the posted comment. Name any changed component the drop leaves with no
-  route, because the cap then costs coverage and not only breadth.
+- **No surface cap.** Walk every discovered route. A route dropped for an infrastructure reason
+  (the stack died, the route never rendered) is named with its reason in the report *and* the posted
+  comment. Name any changed component the drop leaves with no route.
 
-**Diff size of a route** is the sum of `added + deleted` lines from
-`gh pr diff "$PR" --repo "$REPO" --numstat` over **every changed file the route reaches**: the page
-file plus each changed component in its transitive import graph (the graph the `components/**` rule
-walks). A component shared by three pages counts its full numstat toward all three. Ties break by
-route path, ascending, so the cap is deterministic across re-runs.
+**Walk order is route path, ascending**, so two runs over the same head walk the same order.
 
 **Read [coverage.md](coverage.md) before Phase 4.** It owns the component ledger, the ladder that
 reaches a component the default walk never mounts, the `--surfaces` semantics, and fixture

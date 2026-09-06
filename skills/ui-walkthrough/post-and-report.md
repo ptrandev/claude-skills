@@ -57,7 +57,7 @@ only**, the ones Phase 7's priority list kept. Every other surface gets a linked
 
 ### Coverage
 Personas: premium. Viewports: desktop, tablet, mobile.
-Surfaces walked: 8 of 11, dropped `/x`, `/y`, `/z` (cap).
+Surfaces walked: 10 of 11, dropped `/x` (stack died mid-matrix).
 Components covered: 7 of 7 changed UI files proven on screen.
 Images: 11 embedded, 13 linked (budget).
 Stack: locally booted at <sha>, externally stubbed.
@@ -104,7 +104,7 @@ Stack: booted ✓ identity-asserted ✓
 NEUTRAL NOTES (infra, never findings):
 - <e.g. tablet pass skipped: stack died mid-matrix>
 
-COVERAGE: 8/11 surfaces (dropped: …). Assets: refs/ui-walkthrough/pr-1773-<head-sha> @ <commit>
+COVERAGE: 10/11 surfaces (dropped: …). Assets: refs/ui-walkthrough/pr-1773-<head-sha> @ <commit>
 COMPONENTS: 7/7 changed UI files proven on screen (uncovered: <file>, <reason>, rung <n> tried)
 Posted: <review id|comment url>, event=<…>, <k> inline, <m> images embedded.
 ```

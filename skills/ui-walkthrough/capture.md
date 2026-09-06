@@ -89,8 +89,8 @@ fixture, or walk the precondition route. Report the rung that worked.
 primary action's result, then an error or empty state. **The cap does not apply to a state that
 mounts an otherwise-unmounted changed component.** Capture those first, then spend the remaining
 budget. The cap bounds report size, and it must never cost the only view of a changed file. More
-states -> capture the first 3 and list the rest as not walked. The run is therefore at most
-8 surfaces × 2 viewports × 3 states, which Phase 7's embed priority reduces to the budget.
+states -> capture the first 3 and list the rest as not walked. Phase 7's embed priority then reduces
+the captured set to the image budget.
 
 **Exercise the change, do not just render the page.** Open the modal, submit the form, show the
 result, then capture the empty and error states if the surface has them. Naming:

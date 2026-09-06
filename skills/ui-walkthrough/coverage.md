@@ -56,12 +56,10 @@ prose footnote and never omitted.
 
 ## `--surfaces=/a,/b`
 
-Explicit routes replace discovery. Four consequences, all deliberate:
+Explicit routes replace discovery. Three consequences, all deliberate:
 
 - **The not-a-UI-PR early exit does not apply.** Walk the listed routes even when the diff touches no
   `pages/`/`components/` file. Say `explicit --surfaces, discovery skipped` in the Coverage block.
-- **The 8-surface cap still applies.** More than 8 -> walk the first 8 in the order given, list the
-  rest as dropped. The cap bounds run time and comment size, which explicit routes do not change.
 - **Fixture derivation still runs**, keyed off the PR's changed specs (`e2e/tests/**`), not off
   discovered routes. With no changed spec covering a listed route, an unpopulated surface is a
   **neutral note** ("no fixture, route not in this PR's diff"), not the MEDIUM below. That MEDIUM is
